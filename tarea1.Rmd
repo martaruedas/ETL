@@ -1,0 +1,63 @@
+---
+title: "Generación de ficheros de metadatos y lectura de formatos en R"
+author: "Marta Ruedas Burgos"
+date: "11/26/2020"
+output: html_document
+---
+## Descripción de tarea
+
+Como comenté al inicio de la asignatura, nos estamos familiarizando con el trabajo con herramientas Big Data, pero no podemos olvidarnos de que el objetivo es procesar datos.
+
+Es por eso que lo que tenemos que tener como objetivo es la generación de una "librería" de procesamiento de datos.
+
+Que va a comenzar con la lectura y tratamiento de información estructurada sobre fuentes de metainformación que contenga la estructura de los datos con los que trabajamos.
+
+Algunos de estos formatos son yalm y json.  Esta tarea consiste en, buscar información sobre estos formatos, e implementar sendas funciones ya sea en R o en python (recomendado), para poder leer este tipo de ficheros. ¿Se pueden leer con spark? ¿Qué tipo de bases de datos No SQL usa estructuras de datos similares?
+
+Deberéis subir un fichero .R o .py con la función definida y algún ejemplo de uso a vuestro repositorio, además de subirlo aquí.
+
+## Lectura de archivos YAML
+YAML es un formato para almacenar objetos de datos con estructura de árbol. Su acrónimo significa que YAML no es un lenguaje de marcado.
+
+Como ejemplo voy a abrir un environment de conda.
+
+```{r echo=TRUE}
+library(yaml) 
+data <- yaml.load_file("eda_env.yml")
+print(data)
+```
+## Archivo YAML
+
+## Lectura de archivos JSON
+
+```{r echo=TRUE}
+library("rjson")
+
+result <- fromJSON(file = "input.json")
+
+json_data_frame <- as.data.frame(result)
+
+print(json_data_frame)
+```
+
+## Archivo JSON
+
+JSON (JavaScript Object Notation) es un formato de intercambio de datos ligero. JSON es un formato de texto completamente independiente del lenguaje, pero utiliza las convenciones familiares para los programadores de lenguajes de la serie C, incluidos C, C ++, C #, Java, JavaScript, Perl, Python, etc. Estas propiedades hacen de JSON un lenguaje ideal para intercambiar datos.
+
+## ¿Se pueden leer con spark? ¿Qué tipo de bases de datos No SQL usa estructuras de datos similares?
+
+Spark SQL puede inferir automáticamente el esquema de un conjunto de datos JSON y cargarlo como un Dataset[Fila]. Esta conversión puede hacerse usando SparkSession.read.json() ya sea en un Dataset[String], o en un archivo JSON.
+
+Los tipos de bases de datos No SQL que usa estructuras de datos similares son las siguientes:
+- Bases de datos clave – valor
+- Bases de datos documentales
+- Bases de datos en grafo
+- Bases de datos orientadas a objetos
+
+
+## Referencias
+ * https://www.tutorialspoint.com/r/r_json_files.htm
+ * https://stackoverflow.com/questions/29701189/importing-yaml-file-to-rstudio
+ * https://www.acens.com/wp-content/images/2014/02/bbdd-nosql-wp-acens.pdf
+ * https://spark.apache.org/docs/latest/sql-data-sources-json.html
+ 
